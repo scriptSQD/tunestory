@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg: #121212;
+    @apply font-serif;
+}
+
+html,
+body {
+    min-height: 100vh;
+}
+
+body {
+    background-color: var(--bg);
+    background-image: url("/assets/bg.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+@layer utilities {
+    .no-scrollbar {
+        -ms-overflow-style: none; /* for Internet Explorer, Edge */
+        scrollbar-width: none; /* for Firefox */
+        overflow-y: scroll;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+}

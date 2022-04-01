@@ -1,0 +1,51 @@
+$animation_time: 5000ms;
+
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+nav > ul,
+nav > ul > li {
+    display: flex;
+    width: 100%;
+}
+
+nav > ul > li > a {
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    color: white;
+    font-weight: 500;
+}
+
+.link_active::after {
+    @apply absolute content-[''] flex w-[3px] h-3/4 right-0 top-1/2 bg-[#5fe5ae] rounded-2xl;
+    transform: translateY(-50%);
+}
+
+.menu_visible {
+    display: flex;
+}
+
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    row-gap: 0.75rem;
+    overflow: scroll;
+    place-self: center;
+}
+
+.menu-list a {
+    @apply text-4xl font-medium tracking-[0.125em];
+    opacity: 0.5;
+    transition: all 150ms ease-in;
+    width: max-content;
+}
+
+.menu-list a:hover,
+.menu-list a:focus,
+.menu-list a.link-active {
+    opacity: 1;
+}
