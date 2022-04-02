@@ -1,7 +1,17 @@
 <section class="w-full flex flex-col prose max-w-none items-center">
     <h1 class="text-white my-6 text-center">What's new?</h1>
 
-    <div class="empty flex flex-col items-center justify-center mx-3 -z-[1] mb-9">
+    <button
+        class="flex flex-col p-2 bg-[#303030] border-[#6b7280] border-[1px] rounded-lg text-white text-sm font-light max-w-[26ch]"
+        [routerLink]="['/articles', 'new']"
+    >
+        Feels like you have something to say?
+        <p class="m-0 font-medium">Add a new article!</p>
+    </button>
+
+    <div
+        class="empty flex flex-col items-center justify-center mx-3 -z-[1] mb-9"
+    >
         <div class="triangle"></div>
         <div
             class="flex flex-col prose prose-h3:mb-1 max-w-[32ch] rounded-2xl h-max bg-[#0E402D] p-4 text-center text-zinc-200"
@@ -9,19 +19,18 @@
             <h3 class="text-zinc-200">There's nothing here...</h3>
             <p class="text-sm font-light">
                 Seems like we haven't come up with anything great for ya... Give
-                us some time!
-
-                *Empty state
+                us some time! *Empty state
             </p>
         </div>
     </div>
 
     <div class="article-container mx-3 gap-9">
-        <a
-            routerLink="/feed"
+        <ts-article-preview
+            class="cursor-pointer"
             *ngFor="let i of ['1', '2', '3', '4', '5', '6', '7']"
+            [article-header]="i"
+            [routerLink]="['/feed']"
         >
-            <ts-article-preview [article-header]="i"> </ts-article-preview>
-        </a>
+        </ts-article-preview>
     </div>
 </section>

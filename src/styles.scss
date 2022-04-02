@@ -1,10 +1,45 @@
+@import "~quill/dist/quill.snow.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+// Quill styling
+.ql-toolbar.ql-snow,
+.ql-snow .ql-picker-options {
+    background-color: #303030;
+    color: #bbb;
+}
+
+.ql-picker-label {
+    color: #bbb;
+}
+
+.ql-snow .ql-stroke,
+.ql-fill {
+    stroke: #bbb;
+}
+
+.ql-container.ql-snow {
+    position: static;
+}
+
+.ql-editor.ql-blank::before {
+    display: none;
+}
+
+.ql-editor {
+    background-color: #242424;
+}
+
 :root {
     --bg: #121212;
     @apply font-serif;
+}
+
+html {
+    scrollbar-width: auto;
+    scrollbar-color: #5fe5ae #212121;
 }
 
 html,
@@ -24,7 +59,6 @@ body {
     .no-scrollbar {
         -ms-overflow-style: none; /* for Internet Explorer, Edge */
         scrollbar-width: none; /* for Firefox */
-        overflow-y: scroll;
     }
     .no-scrollbar::-webkit-scrollbar {
         display: none;

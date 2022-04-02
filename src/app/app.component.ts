@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, HostListener } from "@angular/core";
 import { gsap } from "gsap";
+import { AuthService } from "./auth/auth.service";
 
 @Component({
     selector: "app-root",
@@ -7,7 +8,7 @@ import { gsap } from "gsap";
     styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements AfterViewInit {
-    constructor() {}
+    constructor(public auth: AuthService) {}
 
     menu!: HTMLElement;
     menuState: boolean = false;

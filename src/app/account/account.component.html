@@ -1,5 +1,21 @@
-<p
-    class="flex flex-wrap text-2xl font-semibold text-white place-self-center mx-auto"
+<section
+    class="-z-[1] prose prose-p:m-0 flex flex-col mx-3 my-2 rounded-lg bg-[hsl(0,0%,13%)] flex-1 max-w-[25%] fixed bottom-2 top-16 items-center overflow-x-hidden overflow-y-scroll no-scrollbar"
+    *ngIf="auth.user$ | async as user"
 >
-    account management coming soon!
-</p>
+    <h3 class="text-center text-white my-2">Your profile:</h3>
+    <img
+        src="https://avatars.githubusercontent.com/u/73490413?v=4"
+        alt=""
+        class="w-[90%] rounded-full mx-6 my-3 max-w-[12rem] max-h-[12rem] object-cover"
+    />
+    <div class="w-full flex flex-col gap-y-3">
+        <span class="flex flex-col text-white font-semibold break-words mx-4"
+            >Username:
+            <p class="font-light">{{ user.username }}</p></span
+        >
+        <span class="flex flex-col text-white font-semibold break-words mx-4"
+            >Email:
+            <p class="font-light">{{ user.email }}</p></span
+        >
+    </div>
+</section>
