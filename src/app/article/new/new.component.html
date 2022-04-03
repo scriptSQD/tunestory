@@ -1,10 +1,109 @@
 <section
-    class="bg-[#272727] border-[#6b7280] rounded-lg p-5 shadow w-full flex flex-col items-center prose prose-h2:text-white text-white"
+    class="m-3 max-w-fit bg-[#272727] border-[#6b7280] rounded-lg p-5 shadow w-full flex flex-col items-center prose prose-h2:text-white text-white"
 >
-    <h2 class="mb-2">That's a place for you to shine!</h2>
+    <h2 class="mb-2 text-center">That's a place for you to shine!</h2>
     <p>Let's write about something:</p>
 
-    <form>
-        <quill-editor class="not-prose"></quill-editor>
+    <form
+        class="w-full flex flex-col items-center gap-y-2 mt-4"
+        [formGroup]="post"
+        (ngSubmit)="submitPost()"
+    >
+        <label for="title" class="w-full flex flex-col font-light m-0.5">
+            Title:
+            <input
+                class="text-[hsl(0,0%,90%)] bg-[#242424] w-full"
+                type="text"
+                id="title"
+                formControlName="title"
+                placeholder="Wonderful new article!"
+            />
+        </label>
+
+        <label for="desc" class="w-full flex flex-col font-light m-0.5">
+            Description:
+            <textarea
+                class="text-[hsl(0,0%,90%)] bg-[#242424] w-full resize-y"
+                id="desc"
+                formControlName="description"
+                placeholder="This wonderful article is about... (in short)"
+                style="scrollbar-width: thin"
+            ></textarea>
+        </label>
+
+        <label for="body" class="font-light m-0.5" *ngIf="!showPreview">
+            Body:
+            <div class="flex flex-col gap-0">
+                <textarea
+                    class="text-[hsl(0,0%,90%)] bg-[#242424] w-full resize-y"
+                    placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem nam aliquam consequuntur provident quisquam quia velit impedit excepturi debitis, dolor dicta, minus mollitia harum id repudiandae commodi accusamus fuga. Quos?"
+                    spellcheck="true"
+                    cols="50"
+                    rows="7"
+                    formControlName="body"
+                    id="body"
+                    style="scrollbar-width: thin"
+                >
+                </textarea>
+
+                <p
+                    class="flex flex-row items-stretch gap-x-1 w-full bg-[#303030] px-2 py-0.5 m-0 border-[#6b7280] border-[1px] font-light text-sm text-[hsl(0,0%,85%)] justify-end border-t-0"
+                >
+                    This textarea supports
+                    <a
+                        href="https://www.markdownguide.org/basic-syntax/"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                    >
+                        <span
+                            class="iconify h-full object-contain fill-[hsl(0,0%,65%)] hover:fill-[hsl(0,0%,85%)] transition-all"
+                            data-icon="logos:markdown"
+                        ></span>
+                    </a>
+                </p>
+            </div>
+        </label>
+
+        <markdown
+            class="w-full p-4 text-[hsl(0,0%,90%)] bg-[#242424] border-[#6b7280] border-[1px] prose-headings:text-[hsl(0,0%,90%)] prose-strong:text-[hsl(0,0%,90%)]"
+            *ngIf="showPreview"
+            [data]="post.value.body"
+        ></markdown>
+
+        <div class="flex flex-row gap-x-2 items-center">
+            <button
+                [disabled]="!post.value.body"
+                class="bg-[#303030] disabled:hover:bg-[#303030] hover:bg-[#212121] rounded-lg border-[1px] border-[#6b7280] px-6 py-1 w-fit transition-all"
+                type="button"
+                (click)="togglePreview()"
+            >
+                {{ !showPreview ? "Preview" : "Edit" }}
+            </button>
+            or
+            <button
+                [disabled]="!post.valid"
+                class="bg-[#303030] disabled:hover:bg-[#303030] hover:bg-[#212121] rounded-lg border-[1px] border-[#6b7280] px-6 py-1 w-fit transition-all"
+            >
+                Post
+            </button>
+        </div>
     </form>
+
+    <ng-container *loading="publishing | async">
+        <ng-container *ngIf="failed | async">
+            <p
+                class="bg-[#303030] rounded-lg border-[1px] border-red-400 px-6 py-1 text-sm font-light w-full break-words"
+            >
+                Something went wrong. Please try again later. (You can see the
+                reason in JS console.)
+            </p>
+        </ng-container>
+        <ng-container *ngIf="(failed | async) === false">
+            <p
+                class="text-center bg-[#303030] rounded-lg border-[1px] border-green-400 px-6 py-1 text-sm font-light w-full break-words"
+            >
+                Your post has been published!
+            </p>
+        </ng-container>
+    </ng-container>
 </section>

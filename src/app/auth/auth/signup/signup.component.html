@@ -1,1 +1,78 @@
-<p>signup works!</p>
+<section
+    class="flex flex-col prose prose-h2:mb-1 prose-h2:text-white text-white text-center p-6 rounded-xl shadow max-w-[36ch] mx-3"
+>
+    <h2>Signup with your email:</h2>
+    <p class="text-sm font-light max-w-[30ch] mx-auto">
+        After that you will be able to enjoy full TuneStory experience!
+    </p>
+    <form
+        [formGroup]="signup"
+        class="flex flex-col space-y-5 items-center justify-center"
+        (ngSubmit)="processsignup()"
+    >
+        <label for="id" class="flex flex-col text-left font-medium w-full">
+            Username
+            <input
+                type="text"
+                id="id"
+                formControlName="username"
+                class="bg-[#303030] text-white rounded-md px-2 py-1.5 invalid:border-red-400"
+                placeholder="CoolDude2022"
+            />
+        </label>
+
+        <label for="id" class="flex flex-col text-left font-medium w-full">
+            Email
+            <input
+                type="email"
+                id="id"
+                formControlName="email"
+                class="bg-[#303030] text-white rounded-md px-2 py-1.5 invalid:border-red-400"
+                placeholder="youremail@domain.com"
+            />
+        </label>
+
+        <label for="pass" class="flex flex-col text-left font-medium w-full">
+            Password
+            <input
+                type="password"
+                id="pass"
+                formControlName="password"
+                class="bg-[#303030] text-white rounded-md px-2 py-1.5 invalid:border-red-400"
+                placeholder="Password"
+            />
+        </label>
+
+        <button
+            type="submit"
+            class="bg-[#303030] disabled:hover:bg-[#303030] hover:bg-[#212121] rounded-lg border-[1px] border-[#6b7280] px-6 py-1 w-fit transition-all"
+            [disabled]="!signup.valid"
+        >
+            Signup
+        </button>
+
+        <p class="text-white text-opacity-80 font-light mt-1">
+            Already have an account?
+            <a
+                routerLink="../login"
+                style="text-decoration: none"
+                class="text-[#5FE5AE] text-opacity-80 font-normal"
+                >Log in!</a
+            >
+        </p>
+
+        <ng-container
+            *loading="
+                isLoading | async;
+                styles: { margin: '0.25rem', width: '45px' }
+            "
+        >
+            <p
+                class="bg-[#303030] rounded-lg border-[1px] border-red-400 px-6 py-1 text-sm font-light w-full break-words"
+                *ngIf="signupFailed | async as failed"
+            >
+                {{ failed.error.message }}
+            </p>
+        </ng-container>
+    </form>
+</section>

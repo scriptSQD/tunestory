@@ -20,7 +20,7 @@ import { LoginComponent } from "./auth/auth/login/login.component";
 import { SignupComponent } from "./auth/auth/signup/signup.component";
 import { ViewComponent } from "./article/view/view.component";
 import { NewComponent } from "./article/new/new.component";
-import { QuillModule } from "ngx-quill";
+import { MarkdownModule } from "ngx-markdown";
 
 @NgModule({
     declarations: [
@@ -43,7 +43,7 @@ import { QuillModule } from "ngx-quill";
         CommonModule,
         HttpClientModule,
         ReactiveFormsModule,
-        QuillModule.forRoot()
+        MarkdownModule.forRoot()
     ],
     providers: [
         { provide: TitleStrategy, useClass: TitleStrat },

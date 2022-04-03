@@ -29,14 +29,14 @@ const routes: Routes = [
                 redirectTo: "login",
                 pathMatch: "full"
             },
-            { path: "signup", component: SignupComponent },
-            { path: "login", component: LoginComponent }
+            { path: "signup", component: SignupComponent, title: "Signup" },
+            { path: "login", component: LoginComponent, title: "Login" }
         ]
     },
     {
         path: "articles",
         children: [
-            { path: "new", component: NewComponent },
+            { path: "new", component: NewComponent, title: "New Article" },
             {
                 path: ":slug",
                 component: ViewComponent

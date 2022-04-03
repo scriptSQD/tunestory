@@ -1,10 +1,8 @@
-import { AuthorProfile } from "./author-profile.interface";
-
 export interface User {
+    id: number;
     username: string;
     email: string;
     provider: string;
     confirmed: boolean;
     blocked: boolean;
-    author: AuthorProfile;
 }

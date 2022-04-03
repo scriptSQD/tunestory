@@ -1,1 +1,14 @@
-<p>view works!</p>
+<ng-container *loading="articleLoading | async">
+    <section id="article-container" class="prose" *ngIf="article">
+        <h1 class="text-white my-3">{{ article.attributes.title }}</h1>
+        <img
+            *ngIf="article.attributes.cover.data?.attributes?.url"
+            [src]="article.attributes.cover.data?.attributes?.url"
+            [alt]="article.attributes.cover.data?.attributes?.alternativeText"
+        />
+        <markdown
+            class="text-[hsl(0,0%,95%)] prose-headings:text-[hsl(0,0%,95%)] prose-strong:text-[hsl(0,0%,95%)] w-full"
+            [data]="article.attributes.body"
+        ></markdown>
+    </section>
+</ng-container>

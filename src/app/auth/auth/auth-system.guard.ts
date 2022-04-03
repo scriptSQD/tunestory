@@ -6,7 +6,7 @@ import {
     RouterStateSnapshot,
     UrlTree
 } from "@angular/router";
-import { Observable, ReplaySubject } from "rxjs";
+import { Observable, ReplaySubject, tap } from "rxjs";
 import { AuthService } from "../auth.service";
 
 @Injectable({
@@ -23,15 +23,17 @@ export class AuthSystemGuard implements CanActivateChild {
         | Promise<boolean | UrlTree>
         | boolean
         | UrlTree {
-        let is: ReplaySubject<boolean> = new ReplaySubject<boolean>();
+        let isAuth: boolean = false;
 
         this.auth.isAuth$.subscribe({
             next: res => {
-                if (res) this.router.navigateByUrl("/account");
-                else is.next(true);
+                isAuth = res;
             }
         });
 
-        return is.asObservable();
+        if (!isAuth) return true;
+        else this.router.navigateByUrl("/account");
+
+        return false;
     }
 }

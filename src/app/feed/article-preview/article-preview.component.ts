@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Article } from "src/app/article/interfaces/article.interface";
 
 @Component({
     selector: "ts-article-preview",
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from "@angular/core";
 export class ArticlePreviewComponent implements OnInit {
     constructor() {}
 
-    @Input("article-header") index?: string;
+    @Input("article") article!: Article;
 
     ngOnInit(): void {}
 }

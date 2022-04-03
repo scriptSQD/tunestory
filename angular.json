@@ -31,8 +31,18 @@
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
                         "assets": ["src/favicon.svg", "src/assets"],
-                        "styles": ["src/styles.scss"],
-                        "scripts": []
+                        "styles": [
+                            "src/styles.scss",
+                            "src/prism-duotone-sea.css",
+                            "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css"
+                        ],
+                        "scripts": [
+                            "node_modules/marked/marked.min.js",
+                            "node_modules/prismjs/prism.js",
+                            "node_modules/prismjs/components/prism-typescript.js",
+                            "node_modules/prismjs/components/prism-javascript.js",
+                            "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"
+                        ]
                     },
                     "configurations": {
                         "production": {
@@ -94,8 +104,18 @@
                         "karmaConfig": "karma.conf.js",
                         "inlineStyleLanguage": "scss",
                         "assets": ["src/favicon.svg", "src/assets"],
-                        "styles": ["src/styles.scss"],
-                        "scripts": []
+                        "styles": [
+                            "src/styles.scss",
+                            "src/prism-duotone-sea.css",
+                            "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css"
+                        ],
+                        "scripts": [
+                            "node_modules/marked/marked.min.js",
+                            "node_modules/prismjs/prism.js",
+                            "node_modules/prismjs/components/prism-typescript.js",
+                            "node_modules/prismjs/components/prism-javascript.js",
+                            "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"
+                        ]
                     }
                 }
             }

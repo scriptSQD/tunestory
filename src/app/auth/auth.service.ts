@@ -78,6 +78,7 @@ export class AuthService {
             )
             .subscribe({
                 next: res => {
+                    this.isAuth$.next(true);
                     localStorage.setItem("token", res.jwt);
                     this.getUser();
                     result.next(true);
@@ -91,8 +92,30 @@ export class AuthService {
 
     logout() {
         this.isAuth$.next(false);
+        localStorage.removeItem("token");
         this.jwt = null;
         this.user$.next(undefined);
-        localStorage.removeItem("token");
+    }
+
+    signup(data: { username: string; email: string; password: string }) {
+        let result: ReplaySubject<boolean> = new ReplaySubject<boolean>();
+
+        this.http
+            .post<{ jwt: string; user: User }>("/auth/local/register", data, {
+                context: setCmsContext()
+            })
+            .subscribe({
+                next: res => {
+                    this.isAuth$.next(true);
+                    localStorage.setItem("token", res.jwt);
+                    this.getUser();
+                    result.next(true);
+                },
+                error: err => {
+                    result.error(err.error);
+                }
+            });
+
+        return result;
     }
 }
