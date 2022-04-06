@@ -1,4 +1,4 @@
-import {  Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ReplaySubject } from "rxjs";
 import { ArticlesService } from "../article/articles.service";
 import { Article } from "../article/interfaces/article.interface";
@@ -21,7 +21,6 @@ export class FeedComponent implements OnInit {
         this.as.articles().subscribe({
             next: res => {
                 this.articles = res;
-                console.log(this.articles);
                 this.loading.next(false);
             },
             error: () => {
