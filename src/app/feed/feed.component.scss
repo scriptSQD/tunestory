@@ -11,24 +11,10 @@
 }
 
 .article-container {
-    display: grid;
-    grid-template-areas:
-        "a"
-        "a";
-}
-
-@media screen and (min-width: 640px) {
-    .article-container {
-        grid-template-areas:
-            "a a"
-            "a a";
-    }
-}
-
-@media screen and (min-width: 1080px) {
-    .article-container {
-        grid-template-areas:
-            "a a a"
-            "a a a";
-    }
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 1340px;
+    width: fit-content;
+    justify-content: space-around;
 }

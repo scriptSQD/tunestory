@@ -29,7 +29,8 @@
             </svg>
         </button>
         <div
-            class="menu hidden fixed flex-col w-screen h-screen bg-[#121212] bg-opacity-90 z-40 top-0 left-0 items-center justify-center"
+            class="menu flex fixed flex-col w-screen h-screen bg-[#121212] bg-opacity-90 z-40 top-0 left-0 items-center justify-center"
+            style="clip-path: inset(0px 0px 0px 100%)"
             id="menu"
         >
             <ng-container *ngIf="auth.isAuth$ | async">
@@ -51,7 +52,7 @@
                     <a
                         routerLink="/home"
                         routerLinkActive="link-active"
-                        (click)="toggleMenu()"
+                        (click)="toggleMenu(true)"
                         >&mdash; Home</a
                     >
                 </li>
@@ -59,7 +60,7 @@
                     <a
                         routerLink="/feed"
                         routerLinkActive="link-active"
-                        (click)="toggleMenu()"
+                        (click)="toggleMenu(true)"
                         >&mdash; Feed</a
                     >
                 </li>
@@ -67,7 +68,7 @@
                     <a
                         routerLink="/account"
                         routerLinkActive="link-active"
-                        (click)="toggleMenu()"
+                        (click)="toggleMenu(true)"
                         >&mdash; Account</a
                     >
                 </li>

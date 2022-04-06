@@ -19,8 +19,7 @@ export class ViewComponent implements OnInit, AfterViewInit {
         this.articleLoading.next(true);
         this.as.article(this.route.snapshot.params["slug"]).subscribe({
             next: res => {
-                console.log(res);
-                this.article = res.data[0];
+                this.article = res;
                 this.articleLoading.next(false);
             }
         });

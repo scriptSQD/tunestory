@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AccountComponent } from "./account/account.component";
 import { AccountGuard } from "./account/account.guard";
+import { NewGuard } from "./article/new.guard";
 import { NewComponent } from "./article/new/new.component";
 import { ViewComponent } from "./article/view/view.component";
 import { AuthSystemGuard } from "./auth/auth/auth-system.guard";
@@ -36,7 +37,12 @@ const routes: Routes = [
     {
         path: "articles",
         children: [
-            { path: "new", component: NewComponent, title: "New Article" },
+            {
+                path: "new",
+                component: NewComponent,
+                title: "New Article",
+                canActivate: [NewGuard]
+            },
             {
                 path: ":slug",
                 component: ViewComponent

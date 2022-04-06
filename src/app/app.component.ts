@@ -27,12 +27,12 @@ export class AppComponent implements AfterViewInit {
             .getElementById("nav")!
             .style.setProperty(
                 "--tw-bg-opacity",
-                Math.max(0, Math.min(1, 0.75 + scroll / 350)).toString()
+                Math.max(0, Math.min(1, 0.75 + scroll / 500)).toString()
             );
     }
 
-    toggleMenu() {
-        if (this.animRunning) return;
+    toggleMenu(force?: boolean) {
+        if (this.animRunning && !force) return;
 
         this.anim = gsap.fromTo(
             "#menu",
@@ -44,16 +44,10 @@ export class AppComponent implements AfterViewInit {
                 duration: 0.95,
                 ease: "expo.inOut",
                 onStart: () => {
-                    if (this.menuState && !this.animRunning) {
-                        this.animRunning = true;
-                        this.menu.classList.toggle("menu_visible");
-                    }
+                    this.animRunning = true;
                 },
                 onComplete: () => {
                     this.animRunning = false;
-                    if (!this.menuState && !this.animRunning) {
-                        this.menu.classList.toggle("menu_visible");
-                    }
                 },
                 runBackwards: this.menuState ? true : false,
                 immediateRender: false

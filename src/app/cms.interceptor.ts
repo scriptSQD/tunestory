@@ -14,6 +14,9 @@ export class CmsInterceptor implements HttpInterceptor {
 
     cmsUrl: string = "https://tunestory-strapi.herokuapp.com/api";
 
+    // debug
+    // cmsUrl: string = "http://localhost:1337/api";
+
     intercept(
         request: HttpRequest<unknown>,
         next: HttpHandler

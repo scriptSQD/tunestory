@@ -3,13 +3,11 @@ import { Media } from "src/app/interfaces/Media.interface";
 
 export interface Article {
     id: number;
-    attributes: {
-        title: string;
-        description: string;
-        slug: string;
-        publishedAt: string;
-        cover: { data: Media };
-        body: string;
-        user: User;
-    };
+    title: string;
+    description: string;
+    slug: string;
+    publishedAt: string;
+    cover: { data: Media };
+    body: string;
+    user: User;
 }

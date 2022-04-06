@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { withCache } from "@ngneat/cashew";
 import { Observable } from "rxjs";
 import { setCmsContext } from "../auth/CmsContext";
 import { Article } from "./interfaces/article.interface";
@@ -20,18 +21,18 @@ export class ArticlesService {
     constructor(private http: HttpClient) {}
 
     articles() {
-        return this.http.get<{ data: Article[] }>("/articles?populate=*", {
-            context: setCmsContext()
+        return this.http.get<Article[]>("/articles?populate=*", {
+            context: withCache({ context: setCmsContext() })
         });
     }
 
-    article(slug: string): Observable<{ data: Article[] }> {
-        return this.http.get<{ data: Article[] }>(
-            `/articles?filters[slug]=${slug}&populate=*`,
-            {
-                context: setCmsContext()
+    article(slug: string): Observable<Article> {
+        return this.http.get<Article>(`/slugify/slugs/article/${slug}`, {
+            context: withCache({ context: setCmsContext() }),
+            params: {
+                populate: "*"
             }
-        );
+        });
     }
 
     postArticle(data: ArticlePubl, auth: string) {

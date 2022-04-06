@@ -21,6 +21,7 @@ import { SignupComponent } from "./auth/auth/signup/signup.component";
 import { ViewComponent } from "./article/view/view.component";
 import { NewComponent } from "./article/new/new.component";
 import { MarkdownModule } from "ngx-markdown";
+import { HttpCacheInterceptorModule } from "@ngneat/cashew";
 
 @NgModule({
     declarations: [
@@ -43,7 +44,8 @@ import { MarkdownModule } from "ngx-markdown";
         CommonModule,
         HttpClientModule,
         ReactiveFormsModule,
-        MarkdownModule.forRoot()
+        MarkdownModule.forRoot(),
+        HttpCacheInterceptorModule.forRoot()
     ],
     providers: [
         { provide: TitleStrategy, useClass: TitleStrat },
