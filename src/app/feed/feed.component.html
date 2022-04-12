@@ -59,6 +59,24 @@
         </div>
     </div>
 
+    <span
+        class="text-white flex flex-col p-2 bg-[#212121] border-[#6b7280] border-[1px] rounded-lg m-3 items-center justify-center"
+    >
+        Sort:
+        <form [formGroup]="filters">
+            <select
+                name=""
+                id=""
+                [multiple]="false"
+                class="bg-[#303030] rounded-[0.25rem] text-gray-300"
+                formControlName="filter"
+            >
+                <option value="desc">Newest first</option>
+                <option value="asc">Oldest first</option>
+            </select>
+        </form>
+    </span>
+
     <div class="article-container mx-3 gap-9" *loading="loading | async">
         <ts-article-preview *ngFor="let a of articles" [article]="a">
         </ts-article-preview>

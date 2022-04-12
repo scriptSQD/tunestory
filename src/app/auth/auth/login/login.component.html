@@ -50,12 +50,7 @@
             >
         </p>
 
-        <ng-container
-            *loading="
-                isLoading | async;
-                styles: { margin: '0.25rem', width: '45px' }
-            "
-        >
+        <ng-container *loading="isLoading | async">
             <p
                 class="bg-[#303030] rounded-lg border-[1px] border-red-400 px-6 py-1 text-sm font-light w-full break-words"
                 *ngIf="loginFailed | async as failed"

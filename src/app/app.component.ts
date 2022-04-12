@@ -59,6 +59,11 @@ export class AppComponent implements AfterViewInit {
         this.anim.play();
     }
 
+    logout() {
+        this.auth.logout();
+        this.toggleMenu(true);
+    }
+
     ngAfterViewInit() {
         this.menu = document.getElementById("menu")!;
     }
