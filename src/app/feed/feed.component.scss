@@ -11,9 +11,10 @@
 }
 
 .article-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    @apply grid-cols-[repeat(1,_1fr)] sm:grid-cols-[repeat(2,_1fr)] lg:grid-cols-[repeat(3,_1fr)];
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-rows: 0.75fr;
     max-width: 1340px;
     width: fit-content;
     justify-content: space-around;

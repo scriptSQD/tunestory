@@ -1,84 +1,84 @@
-<main class="w-full min-h-screen flex flex-col">
-    <nav
-        class="sticky top-0 flex flex-row items-center w-full h-14 bg-[#212121] bg-opacity-75 overflow-y-scroll no-scrollbar shadow shadow-[#212121]"
-        id="nav"
-    >
-        <a routerLink="/home" class="w-11 object-contain mx-3 my-auto">
-            <img src="/assets/logo_simpl.svg" alt="Logo" />
-        </a>
-        <hr
-            class="w-0 h-4/6 border-2 bg-transparent border-[#363636] my-2 rounded-full"
-        />
-        <button class="ml-auto mx-2 p-3 my-auto z-50" (click)="toggleMenu()">
-            <svg
-                width="30"
-                height="17"
-                viewBox="0 0 30 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <rect width="30" height="5" rx="2.5" fill="#5FE5AE" />
-                <rect
-                    x="11.25"
-                    y="12"
-                    width="18.75"
-                    height="5"
-                    rx="2.5"
-                    fill="#5FE5AE"
-                />
-            </svg>
-        </button>
-        <div
-            class="menu flex fixed flex-col w-screen h-screen bg-[#121212] bg-opacity-90 z-40 top-0 left-0 items-center justify-center"
-            style="clip-path: inset(0px 0px 0px 100%)"
-            id="menu"
+<nav
+    class="sticky top-0 flex flex-row items-center w-full h-14 bg-[#212121] bg-opacity-75 overflow-y-scroll no-scrollbar shadow shadow-[#212121] z-40"
+    id="nav"
+>
+    <a routerLink="/home" class="w-11 object-contain mx-3 my-auto">
+        <img src="/assets/logo_simpl.svg" alt="Logo" />
+    </a>
+    <hr
+        class="w-0 h-4/6 border-2 bg-transparent border-[#363636] my-2 rounded-full"
+    />
+    <button class="ml-auto mx-2 p-3 my-auto z-50" (click)="toggleMenu()">
+        <svg
+            width="30"
+            height="17"
+            viewBox="0 0 30 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
         >
-            <ng-container *ngIf="auth.isAuth$ | async">
-                <p
-                    *ngIf="auth.user$ | async as user"
-                    class="absolute flex flex-col top-0 my-4 text-white font-medium text-lg left-1/2 -translate-x-1/2 text-center items-center"
+            <rect width="30" height="5" rx="2.5" fill="#5FE5AE" />
+            <rect
+                x="11.25"
+                y="12"
+                width="18.75"
+                height="5"
+                rx="2.5"
+                fill="#5FE5AE"
+            />
+        </svg>
+    </button>
+    <div
+        class="menu flex fixed flex-col w-screen h-screen bg-[#121212] bg-opacity-90 z-40 top-0 left-0 items-center justify-center"
+        style="clip-path: inset(0px 0px 0px 100%)"
+        id="menu"
+    >
+        <ng-container *ngIf="auth.isAuth$ | async">
+            <p
+                *ngIf="auth.user$ | async as user"
+                class="absolute flex flex-col top-0 my-4 text-white font-medium text-lg left-1/2 -translate-x-1/2 text-center items-center"
+            >
+                Logged in as {{ user.username }}
+                <button
+                    class="text-[#5FE5AE] opacity-80 text-sm font-light w-fit"
+                    (click)="auth.logout()"
                 >
-                    Logged in as {{ user.username }}
-                    <button
-                        class="text-[#5FE5AE] opacity-80 text-sm font-light w-fit"
-                        (click)="auth.logout()"
-                    >
-                        Log out
-                    </button>
-                </p>
-            </ng-container>
-            <ul class="menu-list no-scrollbar">
-                <li>
-                    <a
-                        routerLink="/home"
-                        routerLinkActive="link-active"
-                        (click)="toggleMenu(true)"
-                        >&mdash; Home</a
-                    >
-                </li>
-                <li>
-                    <a
-                        routerLink="/feed"
-                        routerLinkActive="link-active"
-                        (click)="toggleMenu(true)"
-                        >&mdash; Feed</a
-                    >
-                </li>
-                <li>
-                    <a
-                        routerLink="/account"
-                        routerLinkActive="link-active"
-                        (click)="toggleMenu(true)"
-                        >&mdash; Account</a
-                    >
-                </li>
-            </ul>
-            <p class="fixed text-sm bottom-0 m-2 text-white opacity-60">
-                &hearts; from scriptSQD
+                    Log out
+                </button>
             </p>
-        </div>
-    </nav>
+        </ng-container>
+        <ul class="menu-list no-scrollbar">
+            <li>
+                <a
+                    routerLink="/home"
+                    routerLinkActive="link-active"
+                    (click)="toggleMenu(true)"
+                    >&mdash; Home</a
+                >
+            </li>
+            <li>
+                <a
+                    routerLink="/feed"
+                    routerLinkActive="link-active"
+                    (click)="toggleMenu(true)"
+                    >&mdash; Feed</a
+                >
+            </li>
+            <li>
+                <a
+                    routerLink="/account"
+                    routerLinkActive="link-active"
+                    (click)="toggleMenu(true)"
+                    >&mdash; Account</a
+                >
+            </li>
+        </ul>
+        <p class="fixed text-sm bottom-0 m-2 text-white opacity-60">
+            &hearts; from scriptSQD
+        </p>
+    </div>
+</nav>
 
+<main class="w-full min-h-screen flex flex-col">
     <router-outlet></router-outlet>
 </main>
 

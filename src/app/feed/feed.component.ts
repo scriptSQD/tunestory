@@ -4,6 +4,8 @@ import { ArticlesService } from "../article/articles.service";
 import { Article } from "../article/interfaces/article.interface";
 import { AuthService } from "../auth/auth.service";
 
+import * as _ from "lodash";
+
 @Component({
     selector: "ts-feed",
     templateUrl: "./feed.component.html",
@@ -20,7 +22,7 @@ export class FeedComponent implements OnInit {
         this.loading.next(true);
         this.as.articles().subscribe({
             next: res => {
-                this.articles = res;
+                this.articles = _.sortBy(res, "publishedAt").reverse();
                 this.loading.next(false);
             },
             error: () => {

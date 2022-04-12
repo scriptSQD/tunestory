@@ -37,7 +37,7 @@ export class AppComponent implements AfterViewInit {
         this.anim = gsap.fromTo(
             "#menu",
             {
-                clipPath: `inset(0px 0px 0px ${document.body.clientWidth}px)`
+                clipPath: `inset(0px 0px 0px 100vw)`
             },
             {
                 clipPath: "inset(0px 0px 0px 0px)",
