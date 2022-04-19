@@ -1,4 +1,6 @@
-<section class="w-full flex flex-col prose max-w-none items-center">
+<section
+    class="w-full flex flex-col prose max-w-none items-center overflow-x-hidden overflow-y-scroll pb-4"
+>
     <h1 class="text-white my-4 text-center">What's new?</h1>
 
     <ng-container *ngIf="auth.user$ | async as user">
