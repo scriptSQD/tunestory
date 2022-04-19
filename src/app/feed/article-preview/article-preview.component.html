@@ -25,9 +25,10 @@
         <address class="flex flex-col flex-wrap text-white w-fit not-italic">
             By
             <a
-                class="font-light text-sm text-[#D9D9D9] no-underline"
+                class="font-light text-sm text-[#D9D9D9]"
                 rel="author"
-                >{{ article.user.username }}</a
+                [routerLink]="['/user', article.user.id]"
+                >{{ article.user?.username }}</a
             >
         </address>
     </footer>

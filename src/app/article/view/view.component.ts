@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ReplaySubject } from "rxjs";
@@ -15,11 +16,18 @@ export class ViewComponent implements OnInit, AfterViewInit {
     article?: Article;
     articleLoading: ReplaySubject<boolean> = new ReplaySubject<boolean>();
 
+    failed: ReplaySubject<HttpErrorResponse> =
+        new ReplaySubject<HttpErrorResponse>();
+
     ngOnInit(): void {
         this.articleLoading.next(true);
         this.as.article(this.route.snapshot.params["slug"]).subscribe({
             next: res => {
                 this.article = res;
+                this.articleLoading.next(false);
+            },
+            error: err => {
+                this.failed.next(err);
                 this.articleLoading.next(false);
             }
         });

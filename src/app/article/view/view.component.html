@@ -1,36 +1,54 @@
-<ng-container *loading="articleLoading | async">
-    <article id="article-container" class="prose" *ngIf="article">
-        <header class="text-white w-full flex flex-col items-center">
-            <h1 class="text-white my-3 text-center">{{ article.title }}</h1>
-            <time
-                [dateTime]="article.publishedAt"
-                class="flex flex-row flex-wrap gap-x-1"
-            >
-                Published at
-                <p class="font-light m-0">
-                    {{ article.publishedAt | date: "LLLL d, HH:mm, yyyy" }},
-                </p>
-                <address class="not-italic">
-                    by
-                    <a
-                        rel="author"
-                        class="text-white not-italic no-underline font-light"
-                        >{{ article.user.username }}</a
-                    >
-                </address>
-            </time>
-            <hr
-                class="w-full bg-[#292929] border-0 mt-8 m-0 h-[0.175rem] rounded-full"
+<ng-container *ngIf="!(failed | async)">
+    <ng-container *loading="articleLoading | async">
+        <article id="article-container" class="prose" *ngIf="article">
+            <header class="text-white w-full flex flex-col items-center">
+                <h1 class="text-white my-3 text-center">{{ article.title }}</h1>
+                <time
+                    [dateTime]="article.publishedAt"
+                    class="flex flex-row flex-wrap gap-x-1"
+                >
+                    Published at
+                    <p class="font-light m-0">
+                        {{ article.publishedAt | date: "LLLL d, HH:mm, yyyy" }},
+                    </p>
+                    <address class="not-italic">
+                        by
+                        <a
+                            rel="author"
+                            class="text-white not-italic no-underline font-light"
+                            >{{ article.user.username }}</a
+                        >
+                    </address>
+                </time>
+                <hr
+                    class="w-full bg-[#292929] border-0 mt-8 m-0 h-[0.175rem] rounded-full"
+                />
+            </header>
+            <img
+                *ngIf="article.cover?.data?.attributes?.url"
+                [src]="article.cover?.data?.attributes?.url"
+                [alt]="article.cover?.data?.attributes?.alternativeText"
             />
-        </header>
-        <img
-            *ngIf="article.cover?.data?.attributes?.url"
-            [src]="article.cover?.data?.attributes?.url"
-            [alt]="article.cover?.data?.attributes?.alternativeText"
-        />
-        <markdown
-            class="text-[hsl(0,0%,95%)] prose-headings:text-[hsl(0,0%,95%)] prose-strong:text-[hsl(0,0%,95%)] w-full"
-            [data]="article.body"
-        ></markdown>
-    </article>
+            <markdown
+                class="text-[hsl(0,0%,95%)] prose-headings:text-[hsl(0,0%,95%)] prose-strong:text-[hsl(0,0%,95%)] w-full"
+                [data]="article.body"
+            ></markdown>
+        </article>
+    </ng-container>
+</ng-container>
+
+<ng-container *ngIf="failed | async">
+    <div class="flex flex-col items-center justify-center">
+        <div
+            class="flex flex-col prose prose-h3:mb-1 max-w-[32ch] rounded-2xl h-max bg-[#0E402D] p-4 text-center text-zinc-200"
+        >
+            <h3 class="text-zinc-200">There's nothing here...</h3>
+            <p class="text-sm font-light">
+                Seems like we weren't able to find the article you're looking
+                for. <br />
+                Get back to the
+                <a class="text-white" routerLink="/feed">Feed</a> and try again.
+            </p>
+        </div>
+    </div>
 </ng-container>

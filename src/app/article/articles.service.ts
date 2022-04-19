@@ -47,4 +47,10 @@ export class ArticlesService {
             }
         );
     }
+
+    articlesByUser(id: number) {
+        return this.http.get<Article[]>(`/articles/byUser/${id}`, {
+            context: withCache({ context: setCmsContext() })
+        });
+    }
 }

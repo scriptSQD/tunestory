@@ -9,7 +9,9 @@ import { AuthSystemGuard } from "./auth/auth/auth-system.guard";
 import { LoginComponent } from "./auth/auth/login/login.component";
 import { SignupComponent } from "./auth/auth/signup/signup.component";
 import { FeedComponent } from "./feed/feed.component";
+import { FofComponent } from "./fof/fof.component";
 import { HomeComponent } from "./home/home.component";
+import { UserComponent } from "./user/user.component";
 
 const routes: Routes = [
     { path: "", pathMatch: "full", redirectTo: "home" },
@@ -48,7 +50,9 @@ const routes: Routes = [
                 component: ViewComponent
             }
         ]
-    }
+    },
+    { path: "user/:id", component: UserComponent },
+    { path: "**", component: FofComponent }
 ];
 
 @NgModule({

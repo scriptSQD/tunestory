@@ -3,9 +3,11 @@ export interface User {
     username: string;
     // email is present theoretically
     // but practivally not returned in the response
-    // email: string;
+    email: string;
     provider: string;
     confirmed: boolean;
     blocked: boolean;
     article_author: boolean;
+    createdAt: string;
+    picture: string;
 }

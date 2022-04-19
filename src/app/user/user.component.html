@@ -1,0 +1,116 @@
+<ng-container *loading="userLoading | async">
+    <section
+        class="grid grid-flow-row sm:grid-flow-col sm:grid-cols-[max-content,1fr] auto-rows-max sm:auto-rows-auto w-full max-h-full no-scrollbar overflow-x-hidden overflow-y-scroll"
+        *ngIf="user | async as user"
+    >
+        <div class="profile prose prose-p:m-0 p-3">
+            <div
+                class="flex flex-col px-6 py-3 items-center justify-center gap-y-2"
+            >
+                <h3 class="text-center text-white m-0">Your profile:</h3>
+                <img
+                    [src]="user.picture ? user.picture : '/assets/nav/user.svg'"
+                    alt=""
+                    class="w-[90%] rounded-full m-0 max-w-[12rem] max-h-[12rem] object-cover"
+                />
+            </div>
+            <h3 class="m-0 my-0.5 text-white">User:</h3>
+            <div
+                class="w-full flex flex-col gap-y-3 bg-[#303030] rounded-md m-1.5 p-2"
+            >
+                <span
+                    class="flex flex-row text-white font-semibold break-words mx-4 gap-x-1.5"
+                >
+                    Id:
+                    <p class="font-light">{{ user.id }}</p>
+                </span>
+                <span
+                    class="flex flex-row text-white font-semibold break-words mx-4 gap-x-1.5"
+                >
+                    Username:
+                    <p class="font-light">{{ user.username }}</p>
+                </span>
+                <span
+                    class="flex flex-row text-white font-semibold break-words mx-4 gap-x-1.5"
+                >
+                    Email:
+                    <p class="font-light">
+                        {{ user.email ? user.email : "Hidden" }}
+                    </p>
+                </span>
+            </div>
+            <h3 class="m-0 my-0.5 text-white">Author stats:</h3>
+            <div
+                class="w-full flex flex-col gap-y-3 bg-[#303030] rounded-md m-1.5 p-2"
+            >
+                <ng-container *ngIf="user.article_author; else naa">
+                    <span
+                        class="flex flex-row text-white font-semibold break-words mx-4 gap-x-1.5"
+                    >
+                        Total posts:
+                        <p class="font-light">
+                            {{ (articles | async)?.length }}
+                        </p>
+                        <ng-container *ngIf="articlesLoading | async">
+                            <p class="font-light">loading...</p>
+                        </ng-container>
+                    </span>
+                </ng-container>
+                <ng-template #naa>
+                    <h4 class="m-0 my-3 text-white">
+                        User is not an article author.
+                    </h4>
+                </ng-template>
+            </div>
+        </div>
+        <section
+            class="flex flex-col flex-1 items-center max-h-full overflow-y-scroll overflow-x-hidden gap-y-3 m-4 no-scrollbar w-fit justify-self-center"
+            *loading="articlesLoading | async"
+        >
+            <ng-container *ngIf="articles | async as articles">
+                <span class="prose prose-headings:text-white">
+                    <h2 class="m-0 my-1">{{ user.username }}'s posts:</h2>
+                </span>
+                <ng-container
+                    *ngIf="
+                        articles.length != 0 && user.article_author;
+                        else naa
+                    "
+                >
+                    <span class="prose flex flex-col gap-y-3">
+                        <ts-article-preview
+                            *ngFor="let art of articles"
+                            [article]="art"
+                            class="block max-h-fit"
+                        >
+                        </ts-article-preview>
+                    </span>
+                </ng-container>
+                <ng-template #naa>
+                    <span class="prose">
+                        <h3 class="m-0 my-3 font-normal text-white">
+                            User is not an article author.
+                        </h3>
+                    </span>
+                </ng-template>
+            </ng-container>
+        </section>
+    </section>
+
+    <ng-container *ngIf="userNotFound | async">
+        <div class="flex flex-col items-center justify-center">
+            <div
+                class="flex flex-col prose prose-h3:mb-1 max-w-[32ch] rounded-2xl h-max bg-[#0E402D] p-4 text-center text-zinc-200"
+            >
+                <h3 class="text-zinc-200">There's nothing here...</h3>
+                <p class="text-sm font-light">
+                    Seems like we weren't able to find the user you're looking
+                    for.
+                    <br />
+                    Check the <strong class="text-white">id</strong> and try
+                    again.
+                </p>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

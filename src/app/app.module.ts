@@ -22,6 +22,8 @@ import { ViewComponent } from "./article/view/view.component";
 import { NewComponent } from "./article/new/new.component";
 import { MarkdownModule } from "ngx-markdown";
 import { HttpCacheInterceptorModule } from "@ngneat/cashew";
+import { UserComponent } from "./user/user.component";
+import { FofComponent } from "./fof/fof.component";
 
 @NgModule({
     declarations: [
@@ -36,7 +38,9 @@ import { HttpCacheInterceptorModule } from "@ngneat/cashew";
         LoginComponent,
         SignupComponent,
         ViewComponent,
-        NewComponent
+        NewComponent,
+        UserComponent,
+        FofComponent
     ],
     imports: [
         BrowserModule,
