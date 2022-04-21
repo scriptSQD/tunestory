@@ -2,6 +2,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { AfterViewInit, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ReplaySubject } from "rxjs";
+import { AuthService } from "src/app/auth/auth.service";
 import { ArticlesService } from "../articles.service";
 import { Article } from "../interfaces/article.interface";
 
@@ -11,7 +12,11 @@ import { Article } from "../interfaces/article.interface";
     styleUrls: ["./view.component.scss"]
 })
 export class ViewComponent implements OnInit, AfterViewInit {
-    constructor(private route: ActivatedRoute, private as: ArticlesService) {}
+    constructor(
+        private route: ActivatedRoute,
+        private as: ArticlesService,
+        public auth: AuthService
+    ) {}
 
     article?: Article;
     articleLoading: ReplaySubject<boolean> = new ReplaySubject<boolean>();

@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AccountComponent } from "./account/account.component";
 import { AccountGuard } from "./account/account.guard";
+import { EditComponent } from "./article/edit/edit.component";
 import { NewGuard } from "./article/new.guard";
 import { NewComponent } from "./article/new/new.component";
 import { ViewComponent } from "./article/view/view.component";
@@ -48,6 +49,11 @@ const routes: Routes = [
             {
                 path: ":slug",
                 component: ViewComponent
+            },
+            {
+                path: "edit/:slug",
+                component: EditComponent,
+                title: "Edit Article"
             }
         ]
     },

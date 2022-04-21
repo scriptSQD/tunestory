@@ -48,6 +48,19 @@ export class ArticlesService {
         );
     }
 
+    editArticle(data: ArticlePubl, auth: string, id: number) {
+        return this.http.put<Article>(
+            `/articles/${id}`,
+            { data: data },
+            {
+                context: setCmsContext(),
+                headers: {
+                    Authorization: `Bearer ${auth}`
+                }
+            }
+        );
+    }
+
     articlesByUser(id: number) {
         return this.http.get<Article[]>(`/articles/byUser/${id}`, {
             context: withCache({ context: setCmsContext() })

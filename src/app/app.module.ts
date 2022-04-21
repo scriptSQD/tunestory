@@ -24,6 +24,7 @@ import { MarkdownModule } from "ngx-markdown";
 import { HttpCacheInterceptorModule } from "@ngneat/cashew";
 import { UserComponent } from "./user/user.component";
 import { FofComponent } from "./fof/fof.component";
+import { EditComponent } from "./article/edit/edit.component";
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { FofComponent } from "./fof/fof.component";
         ViewComponent,
         NewComponent,
         UserComponent,
-        FofComponent
+        FofComponent,
+        EditComponent
     ],
     imports: [
         BrowserModule,
